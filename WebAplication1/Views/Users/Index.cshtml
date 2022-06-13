@@ -1,0 +1,49 @@
+﻿@model IEnumerable<UserModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<partial name="_Notification"/>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Users list</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a class="btn btn-primary " asp-action="Create"><i class="bi bi-plus-circle"></i>&nbsp;Create user</a>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Age</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var user in Model)
+    {
+        <tr>
+            <td width="30%">@user.Name</td>
+            <td width="30%">@user.Surname</td>
+            <td width="20%">@user.Age</td>
+            <td>
+                <div class="w-95 btn-group" role="group">
+                    <a asp-controller="Users" asp-action="Edit" asp-route-id="@user.Id"
+                       class="btn btn-primary mx-2"> <i class="bi bi-pencil-square"></i> Edit </a>
+                    
+                    <a asp-controller="Users" asp-action="Delete" asp-route-id="@user.Id"
+                       class="btn btn-danger mx-2"> <i class="bi bi-trash"></i> Delete </a>
+                </div>
+            </td>
+        </tr>
+    }
+   
+    </tbody>
+</table>
+
